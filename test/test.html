@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf8">
+    <title>test</title>
+    <script src="../src/libyo.js"></script>
+  </head>
+  <body>
+    <script>
+      yo = LibYo.getInstance("your Yo App's token");
+      yo.setListener(function(b,s,r) { console.log(b,s,r); });
+      yo.checkUserName("your Yo account");
+      yo.yo("your Yo account");
+      yo.yo("your Yo account", "image url you like");
+      yo.yoAll();
+      yo.yoAll("image url you like");
+    </script>
+  </body>
+</head>
