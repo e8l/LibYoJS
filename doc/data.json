@@ -142,6 +142,28 @@
         {
             "file": "src\\libyo.js",
             "line": 102,
+            "description": "send yo with text\n\n    var yo = LibYo.getInstance(...);\n    \n    yo.yoText(\"Lorem Ipsum\");",
+            "async": 1,
+            "itemtype": "method",
+            "name": "yoText",
+            "params": [
+                {
+                    "name": "username",
+                    "description": "Yo recipient user name",
+                    "type": "String"
+                },
+                {
+                    "name": "text",
+                    "description": "text which you want to send. if empty, then it sends normal yo.",
+                    "type": "String"
+                }
+            ],
+            "class": "Yo",
+            "module": "LibYo"
+        },
+        {
+            "file": "src\\libyo.js",
+            "line": 123,
             "description": "send yo to all subscribers\n\n    var yo = LibYo.getInstance(...);\n    \n    yo.yoAll(); // send yo to all\n    yo.yoAll(\"http://example.com/sample.jpg\"); // yoall with link",
             "async": 1,
             "itemtype": "method",
@@ -160,7 +182,24 @@
         },
         {
             "file": "src\\libyo.js",
-            "line": 128,
+            "line": 149,
+            "description": "send yo with text to all subscribers\n\n    var yo = LibYo.getInstance(...);\n    \n    yo.yoallText(\"Lorem Ipsum\");",
+            "async": 1,
+            "itemtype": "method",
+            "name": "yoallText",
+            "params": [
+                {
+                    "name": "text",
+                    "description": "text which you want to send. if empty, then it sends normal yo.",
+                    "type": "String"
+                }
+            ],
+            "class": "Yo",
+            "module": "LibYo"
+        },
+        {
+            "file": "src\\libyo.js",
+            "line": 169,
             "description": "Check whether 'username' user exists really.\n\n    var yo = LibYo.getInstance(...);\n\n    yo.checkUserName(\"FOO\");",
             "async": 1,
             "itemtype": "method",
@@ -181,7 +220,7 @@
         },
         {
             "file": "src\\libyo.js",
-            "line": 155,
+            "line": 196,
             "description": "Set event listener which will call when send method has finished.\n\n    var yo = LibYo.getInstance(...);\n    \n    yo.setListener(function(isSucc, retCode, response) {\n      if( isSucc ) { //when last yo api has succeeded\n        ...\n      }\n      else {\n        ...\n      }\n    });\nListener will get 3 arguments.\nFisrt argument is whether last API call has succeeded.\nSecond argument is return code such as 200, 400, and so on.\nThird argument is response text (maybe JSON).",
             "itemtype": "method",
             "name": "setListener",

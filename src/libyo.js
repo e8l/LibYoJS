@@ -46,9 +46,9 @@ var LibYo = {};
       var _setPref = function(method, xhr, params) {
         if (method === "POST") {
           xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-          xhr.setRequestHeader("Content-length", params.length);
+          //xhr.setRequestHeader("Content-length", params.length);
         }
-        xhr.setRequestHeader("Connection", "close");
+        //xhr.setRequestHeader("Connection", "close");
 
         xhr.onreadystatechange = function() {
           if (xhr.readyState === 4) {
@@ -100,6 +100,27 @@ var LibYo = {};
             },
 
           /**
+           * send yo with text
+           *
+           *     var yo = LibYo.getInstance(...);
+           *     
+           *     yo.yoText("Lorem Ipsum");
+           *
+           * @async
+           * @method yoText
+           * @param {String} username Yo recipient user name
+           * @param {String} text     text which you want to send. if empty, then it sends normal yo.
+           */
+          yoText: function(username, text) {
+            if (isValidString(text)) {
+              this.yo(username, "http://www.yotext.co/show/?text="+encodeURIComponent(text));
+            }
+            else {
+              this.yo(username);
+            }
+          },
+
+          /**
            * send yo to all subscribers
            *
            *     var yo = LibYo.getInstance(...);
@@ -124,6 +145,26 @@ var LibYo = {};
                    _setPref("POST", xhr, params);
                    xhr.send(params);
                  },
+
+          /**
+           * send yo with text to all subscribers
+           *
+           *     var yo = LibYo.getInstance(...);
+           *     
+           *     yo.yoallText("Lorem Ipsum");
+           *
+           * @async
+           * @method yoallText
+           * @param {String} text text which you want to send. if empty, then it sends normal yo.
+           */
+          yoallText: function(text) {
+            if (isValidString(text)) {
+              this.yoall("http://www.yotext.co/show/?text="+encodeURIComponent(text));
+            }
+            else {
+              this.yoall();
+            }
+          },
 
           /**
            * Check whether 'username' user exists really.

@@ -129,9 +129,9 @@ var LibYo = {};
       var _setPref = function(method, xhr, params) {
         if (method === &quot;POST&quot;) {
           xhr.setRequestHeader(&quot;Content-type&quot;, &quot;application/x-www-form-urlencoded&quot;);
-          xhr.setRequestHeader(&quot;Content-length&quot;, params.length);
+          //xhr.setRequestHeader(&quot;Content-length&quot;, params.length);
         }
-        xhr.setRequestHeader(&quot;Connection&quot;, &quot;close&quot;);
+        //xhr.setRequestHeader(&quot;Connection&quot;, &quot;close&quot;);
 
         xhr.onreadystatechange = function() {
           if (xhr.readyState === 4) {
@@ -183,6 +183,27 @@ var LibYo = {};
             },
 
           /**
+           * send yo with text
+           *
+           *     var yo = LibYo.getInstance(...);
+           *     
+           *     yo.yoText(&quot;Lorem Ipsum&quot;);
+           *
+           * @async
+           * @method yoText
+           * @param {String} username Yo recipient user name
+           * @param {String} text     text which you want to send. if empty, then it sends normal yo.
+           */
+          yoText: function(username, text) {
+            if (isValidString(text)) {
+              this.yo(username, &quot;http://www.yotext.co/show/?text=&quot;+encodeURIComponent(text));
+            }
+            else {
+              this.yo(username);
+            }
+          },
+
+          /**
            * send yo to all subscribers
            *
            *     var yo = LibYo.getInstance(...);
@@ -207,6 +228,26 @@ var LibYo = {};
                    _setPref(&quot;POST&quot;, xhr, params);
                    xhr.send(params);
                  },
+
+          /**
+           * send yo with text to all subscribers
+           *
+           *     var yo = LibYo.getInstance(...);
+           *     
+           *     yo.yoallText(&quot;Lorem Ipsum&quot;);
+           *
+           * @async
+           * @method yoallText
+           * @param {String} text text which you want to send. if empty, then it sends normal yo.
+           */
+          yoallText: function(text) {
+            if (isValidString(text)) {
+              this.yoall(&quot;http://www.yotext.co/show/?text=&quot;+encodeURIComponent(text));
+            }
+            else {
+              this.yoall();
+            }
+          },
 
           /**
            * Check whether &#x27;username&#x27; user exists really.
